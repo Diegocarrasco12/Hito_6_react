@@ -6,21 +6,20 @@ export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
     const [token, setToken] = useState(() => {
-         // Obtener el token desde localStorage al inicializar el estado
-        return localStorage.getItem('token') === 'true'
+         const storedToken = localStorage.getItem('token')
+        return storedToken !== null ? storedToken === 'true' : true
     })
 
     useEffect(() => {
-        // guardar el token en localstorage cuando cambie
         localStorage.setItem('token', token)
     }, [token])
 
     const logout = () => {
-        setToken(false); // Cambiar el token a false cuando se cierre sesión
+        setToken(false); 
     };
 
     return (
-        <UserContext.Provider value={{ token, logout }}>
+        <UserContext.Provider value={{ token, logout, setToken }}>
             {children}
         </UserContext.Provider>
     );

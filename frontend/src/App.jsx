@@ -24,7 +24,6 @@ const App = () => {
       
 
   const validRoutes = ['/', '/cardpizza', '/cart', '/register', '/home', '/login', '/pizza/p001', '/profile', '/pizza/p002', '/pizza/p003', '/pizza/p004', '/pizza/p005', '/pizza/p006']
-  //condicional para mostrar el Navbar
   const shouldShowNavbar = validRoutes.includes(location.pathname)
 
   const PizzaPage = () => {
@@ -48,9 +47,9 @@ const App = () => {
             <Route path='/cart' element={<Cart />}></Route>
             <Route path='/pizza/p001' element={<Pizza pizzaId="p001" />}></Route>
             <Route path="/profile" element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Profile />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           } />
             <Route path="/pizza/:id" element={<PizzaPage />}></Route>
             <Route path='*' element={<NotFound />}></Route>
